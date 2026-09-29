@@ -1,0 +1,33 @@
+:root { color-scheme: light; font-family: system-ui, "Microsoft YaHei", sans-serif; color: #20313b; background: #f3f6f8; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+main { width: min(900px, calc(100% - 40px)); margin: 40px auto; }
+header { display: flex; align-items: start; justify-content: space-between; gap: 24px; margin-bottom: 26px; }
+h1 { margin: 0 0 8px; font-size: 26px; }
+h2 { margin: 0; font-size: 18px; }
+p { line-height: 1.6; }
+header p, .hint { margin: 0; color: #687985; }
+.card { background: white; border: 1px solid #dce5e9; border-radius: 16px; padding: 24px; margin-bottom: 18px; box-shadow: 0 3px 14px #1836450a; }
+.section-title, .actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.section-title { margin-bottom: 16px; }
+.actions { justify-content: flex-end; margin-top: 18px; flex-wrap: wrap; }
+.lessons { max-height: 430px; overflow: auto; border: 1px solid #e1e9ed; border-radius: 10px; }
+.lesson { display: flex; gap: 14px; align-items: center; padding: 13px 15px; border-bottom: 1px solid #edf1f3; cursor: pointer; }
+.lesson:last-child { border-bottom: 0; }
+.lesson:hover { background: #f7fafb; }
+.lesson.unavailable { color: #89949b; cursor: default; }
+.lesson input { width: 17px; height: 17px; accent-color: #27638a; }
+.lesson-main { display: flex; flex-direction: column; gap: 3px; }
+.lesson-title { font-weight: 600; }
+.lesson-subtitle { font-size: 13px; color: #687985; }
+button { border: 1px solid #27638a; background: #27638a; color: white; border-radius: 8px; padding: 9px 16px; font: inherit; font-weight: 600; cursor: pointer; }
+button.secondary { background: white; color: #27638a; }
+button:disabled { opacity: .45; cursor: not-allowed; }
+.progress { margin-top: 18px; display: grid; gap: 8px; }
+.progress-row { border-radius: 8px; background: #f4f8fa; padding: 9px 12px; font-size: 14px; }
+.progress-row.error { background: #fff1ed; color: #a63820; }
+.progress-row.success { background: #edf8f0; color: #216a34; }
+.message { min-height: 24px; margin: 0 0 10px; font-weight: 600; }
+.message.error { color: #a63820; }
+.hint { font-size: 13px; }
+[hidden] { display: none !important; }

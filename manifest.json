@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "交大课堂转写与 PPT 导出",
+  "version": "0.2.0",
+  "description": "从已登录的交大课程播放页导出所选节次的转写和 PPT 图片。",
+  "minimum_chrome_version": "116",
+  "permissions": ["activeTab", "scripting"],
+  "host_permissions": ["https://v.sjtu.edu.cn/*"],
+  "optional_host_permissions": ["https://*/*"],
+  "background": { "service_worker": "src/background.js", "type": "module" },
+  "web_accessible_resources": [{
+    "resources": ["src/panel.mjs", "src/panel.css", "src/core.mjs", "src/workflow.mjs", "src/save.mjs", "src/filter.mjs", "src/picker.mjs"],
+    "matches": ["https://v.sjtu.edu.cn/*"]
+  }],
+  "action": { "default_title": "导出课堂转写与 PPT" }
+}

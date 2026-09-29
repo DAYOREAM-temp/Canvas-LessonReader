@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>课堂转写与 PPT 导出</title>
+  <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>课堂转写与 PPT 导出</h1>
+        <p>使用当前已登录的课程页面，按节次保存转写文本和对应 PPT 图片。</p>
+      </div>
+      <button id="refresh" class="secondary" type="button">刷新节次</button>
+    </header>
+
+    <section class="card">
+      <div class="section-title">
+        <h2>选择节次</h2>
+        <span id="count"></span>
+      </div>
+      <div id="lessons" class="lessons" aria-live="polite">正在读取节次列表…</div>
+      <div class="actions">
+        <button id="select-all" class="secondary" type="button" disabled>全选可用节次</button>
+        <button id="prepare" type="button" disabled>准备所选节次</button>
+      </div>
+    </section>
+
+    <section id="result-card" class="card" hidden>
+      <h2>导出检查</h2>
+      <p id="preview"></p>
+      <p id="permission-note" hidden></p>
+      <div class="actions">
+        <button id="grant" class="secondary" type="button" hidden>授权图片来源</button>
+        <button id="save" type="button" hidden>选择文件夹并导出</button>
+      </div>
+      <div id="progress" class="progress" aria-live="polite"></div>
+    </section>
+
+    <p id="message" class="message" role="status"></p>
+    <p class="hint">每个节次建立独立文件夹；重复导出会新建带序号的文件夹，保留此前结果。</p>
+  </main>
+  <script type="module" src="src/export.mjs"></script>
+</body>
+</html>

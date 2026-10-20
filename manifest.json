@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "交大课堂转写与 PPT 导出",
-  "version": "0.2.0",
-  "description": "从已登录的交大课程播放页导出所选节次的转写和 PPT 图片。",
+  "name": "Canvas LessonReader · 悬浮窗版",
+  "version": "0.2.1",
+  "description": "在交大课程播放页的悬浮窗内筛选节次、排除签到及桌面截图，并导出转写和 PPT 图片。",
   "minimum_chrome_version": "116",
   "permissions": ["activeTab", "scripting"],
   "host_permissions": ["https://v.sjtu.edu.cn/*"],
@@ -12,5 +12,5 @@
     "resources": ["src/panel.mjs", "src/panel.css", "src/core.mjs", "src/workflow.mjs", "src/save.mjs", "src/filter.mjs", "src/picker.mjs"],
     "matches": ["https://v.sjtu.edu.cn/*"]
   }],
-  "action": { "default_title": "导出课堂转写与 PPT" }
+  "action": { "default_title": "打开课堂转写与 PPT 导出悬浮窗" }
 }

@@ -6,7 +6,7 @@ import { exclusionReason, inspectImage } from './filter.mjs';
 const template = `
   <div class="panel" role="dialog" aria-label="课堂转写与 PPT 导出">
     <header id="drag-handle">
-      <div><strong>课堂转写与 PPT 导出</strong><small>拖动此处移动悬浮窗</small></div>
+      <div><strong>课堂转写与 PPT 导出</strong><small><span id="version"></span> · 拖动此处移动悬浮窗</small></div>
       <button id="close" class="icon" type="button" aria-label="收起悬浮窗">×</button>
     </header>
     <div class="body">
@@ -77,6 +77,7 @@ export function mountPanel() {
   (document.body || document.documentElement).append(host);
 
   const el = id => shadow.getElementById(id);
+  el('version').textContent = `v${chrome.runtime.getManifest().version}`;
   let lessons = [];
   let prepared = null;
   let missingOrigins = [];

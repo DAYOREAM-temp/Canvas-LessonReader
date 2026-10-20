@@ -39,15 +39,25 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   return true;
 });
 
+async function setActionStatus(tabId, message = '') {
+  const target = Number.isInteger(tabId) ? { tabId } : {};
+  await Promise.all([
+    chrome.action.setBadgeText({ ...target, text: message ? '!' : '' }),
+    chrome.action.setTitle({ ...target, title: message || '打开课堂转写与 PPT 导出悬浮窗' }),
+    ...(message ? [chrome.action.setBadgeBackgroundColor({ ...target, color: '#b42318' })] : []),
+  ]);
+}
+
 chrome.action.onClicked.addListener(async tab => {
-  const page = chrome.runtime.getURL('export.html');
-  if (!tab.id || !tab.url?.startsWith('https://v.sjtu.edu.cn/jy-application-resourcemanage-ui/#/play-center')) {
-    await chrome.tabs.create({ url: `${page}?error=请先打开交大课程播放页` });
+  if (!Number.isInteger(tab.id) || !tab.url?.startsWith('https://v.sjtu.edu.cn/jy-application-resourcemanage-ui/#/play-center')) {
+    await setActionStatus(tab.id, '请先打开已登录的交大课程播放页，再点击图标打开悬浮窗');
     return;
   }
+  await setActionStatus(tab.id);
   try {
     await chrome.scripting.executeScript({ target: { tabId: tab.id }, files: ['src/overlay.js'] });
-  } catch {
-    await chrome.tabs.create({ url: `${page}?error=${encodeURIComponent('无法在课程页打开悬浮窗，请刷新课程页后重试')}` });
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : String(error);
+    await setActionStatus(tab.id, `悬浮窗打开失败，请刷新课程页后重试：${detail}`);
   }
 });
